@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>NETWORKING ASSINGMENT BY ARNAB MONDAL</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			::-webkit-scrollbar{
+				width: 5px;
+			}
+			::-webkit-scrollbar-track{
+				background: #dcdcdc;
+			}
+			::-webkit-scrollbar-thumb{
+				background: #0007;
+			}
+			::-webkit-scrollbar-thumb:hover{
+				background: #0007;
+			}
+		</style>
+		<style type=text/css>
+			html{
+				font-size:10px;
+			}
+			:root{
+				--color-1: #673ab7;
+			}
+			body{
+				line-height: 1.5;
+				font-family: sans-serif;
+				background-color: #0002;
+			}
+			*{
+				box-sizing: border-box;
+				margin:0;
+				padding:0;
+			}
+			a{
+				text-decoration: none;
+				color:black;
+			}
+			.container{
+				max-width: 1170px;
+				margin: auto;
+			}
+			.row{
+				display: flex;
+				flex-wrap: wrap;
+			}
+			.align-items-center{
+				align-items: center;
+			}
+			.justify-content-between{
+				justify-content: space-between;
+			}
+			
+			.header{
+				background-color: var(--color-1);
+				padding:0.2rem 0.1rem;
+				position: relative;
+			}
+			.header .logo,
+			.header .nav{
+				padding:0 2rem;
+			}
+			.header .logo a{
+				font-size: 2.5rem;
+				color: #ffffff;
+				text-transform: capitalize;
+			}
+			.header .nav ul li{
+				display: inline-block;
+				margin-left: 40px;
+			}
+			.header .nav ul li a{
+				display: block;
+				font-size: 16px;
+				padding:10px 0;
+				color: rgba(255,255,255,0.7);
+				text-transform: capitalize;
+				transition: all 0.5s ease;
+			}
+			.header .nav ul li a:hover,
+			.header .nav ul li a.active{
+				color: #ffffff;
+			}
+			.header #nav-check{
+				position: absolute;
+				opacity:0;
+				pointer-events: none;
+			}
+			.nav-toggler{
+				height: 34px;
+				width: 44px;
+				background-color: var(--color-1);
+				border-radius: 4px;
+				cursor: pointer;
+				display: none;
+				align-items: center;
+				justify-content: center;
+				margin-right: 15px;
+			}
+			.nav-toggler span{
+				display: block;
+				height: 2px;
+				width: 20px;
+				background-color: #ffffff;
+				position: relative;
+			}
+			.nav-toggler span::before,
+			.nav-toggler span::after{
+				content: '';
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background-color: #ffffff;
+				left:0;
+			}
+			.nav-toggler span::before{
+				top: -6px;
+			}
+			.nav-toggler span::after{
+				top: 6px;
+			}
+			@media(max-width: 991px){
+				.nav-toggler{
+					display: flex;
+				}
+				.header .nav{
+					position: absolute;
+					left:0;
+					top:100%;
+					width: 100%;
+					background-color: var(--color-1);
+					border-top: 1px solid rgba(255,255,255,0.2);
+					opacity:0;
+					visibility: hidden;
+				}
+				.header .nav ul li{
+					display: block;
+					margin:0;
+				}
+				.header #nav-check:checked ~ .nav{
+					opacity: 1;
+					visibility: visible;
+				}
+				.header #nav-check:checked ~ .nav-toggler span{
+					background-color: transparent;
+				}
+				.header #nav-check:checked ~ .nav-toggler span::before{
+					top:0;
+					transform: rotate(45deg);
+				}
+				.header #nav-check:checked ~ .nav-toggler span::after{
+					top:0;
+					transform: rotate(-45deg);
+				}
+			}
+			.banner {
+				height: calc(100rem-400rem);
+				background-image: url('photo/ab.jpg');
+				background-size: var(--bg-size);
+				background-attachment:fixed;
+				background-position: center;
+				box-shadow: 0px 5px 7px #666666;
+				border: 1px solid #666666;
+
+			}
+			.banner h2 {
+				margin-top:10rem;
+				margin-bottom:0;
+				margin-left: 3rem;
+				margin-right: 3rem;
+				padding:0;
+				font-size: 5vw;
+				font-family: Californian FB;
+				color: #fff;
+				text-align: center;
+			}
+			.banner hr {
+				margin-top:0;
+				margin-bottom:10rem;
+				width:15rem;
+				height:1rem;
+				border: 0;
+				border-top: 0.3rem solid red;
+			}
+			.block_body{
+				display: block;
+				margin-top:0;
+				margin-left:3rem;
+				margin-right:3rem;
+				margin-bottom:2rem;
+				padding:0.2rem;
+				background-color: #ffffff;
+				font-family: Times New Roman;
+				font-size: 2rem;
+				box-shadow: 0px 5px 7px #666666;
+				border: 1px solid #fffff ;
+			}
+			.fullbody{
+				margin:0 3rem;
+				padding:0;
+				font-family: Times New Roman;
+				font-size: 1.5rem;
+				text-align:justify;
+			}
+			.fullbody h3 {
+				margin-top:20px;
+				margin-bottom:0;
+				margin-bottom:0;
+				font-size: 3rem;
+				color: black;
+			}
+			.fullbody p {
+				margin-top:10px;
+				margin-bottom:0;
+				font-size: 1.5rem;
+				color: black;
+			}
+			.fullbody img{
+				display:block;
+				padding:0.5rem;
+				margin: 0 auto; 
+				max-width: 100%; 
+				width:36rem;
+				height:auto;
+				background-color: #ffffff;
+			}
+			.fullbody ul {
+				margin-top:10px;
+				margin-bottom:0;
+				font-size: 1.5remx;
+				color: black;
+			}
+			.fullbody li {
+				margin: 1px auto;
+				margin-bottom:0;
+				font-size: 1.5rem;
+				color: black;
+			}
+			#downnav{
+				margin:0;
+				padding:0;
+				max-width: 100%;
+				min-height: 90px;
+				background: #262626;
+				margin-top:40px;
+				padding:20px;
+				width: 100%;
+				height: 90px;
+				background: #262626;
+				box-shadow: 0 -5px 7px #666666;
+				border: 1px solid #666666;
+			}
+			#downnav ul{
+				list-style: none;
+				padding: 0;
+				margin:20px 0px;
+				text-align: center;
+			}
+			#downnav li{
+				display: inline-block;
+				text-align: center;
+				max-width:95px;
+				heght:70px;
+				line-height:0px;
+			}
+			#downnav a{
+				text-decoration: none;
+				color:#fff;
+				width: 100px;
+				display: block;
+				font-size: 15px;
+				fonr-wight: bold;
+				text-align: center;
+				display:block;
+				fonr-wight:bolder;
+			}
+			#downnav a:hover{
+				background:blue;
+				color:#fff;
+				transition:0.1s;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="header">
+			<div class="container">
+				<div class="row align-items-center justify-content-between">
+					<div class="logo">
+						<a href="#">Arnab Mondal</a>
+				</div>
+				<input type="checkbox" id="nav-check">
+				<label for="nav-check" class="nav-toggler">
+					<span></span>
+				</label>
+				<nav class="nav">
+					<ul>
+						<li><a href ="index.html">HOME</a></li>
+						<li><a href ="1.html">HISTORY</a></li>
+						<li><a href ="ABOUT US.html">ABOUT US</a></li>
+					</ul>
+				</nav>
+				</div>
+			</div>
+		</header>
+		
+		<div class="banner"><center><h2>HISTORY</h2><hr/></center></div>
+		<div class="adds">
+			<h1>
+				<marquee>
+					<a href="ABOUT US.html">
+						NETWORKING ASSIGNMENT BY ARNAB MONDAL
+					</a>
+				</marquee>
+			</h1>
+		</div>
+		<div class="block_body">
+			<div class="fullbody">
+					<h3>History-</h3>
+							<p>
+								Computer networking may be considered a branch of computer science, computer engineering, and telecommunications, since it 
+								relies on the theoretical and practical application of the related disciplines. Computer networking was influenced by a wide 
+								array of technology developments and historical milestones.
+								<ul>					
+									<li>
+										In the late 1950s, a network of computers was built for the U.S. military Semi-Automatic Ground Environment (SAGE) 
+										radar system using the Bell 101 modem. It was the first commercial modem for computers, released by AT&T Corporation 
+										in 1958. The modem allowed digital data to be transmitted over regular unconditioned telephone lines at a speed of 110
+										bits per second (bit/s).
+										<img src="photo/h1.jpg">
+									</li>
+									<li>
+										In 1959, Christopher Strachey filed a patent application for time-sharing and John McCarthy initiated the first project to
+										implement time-sharing of user programs at MIT. Stratchey passed the concept on to J. C. R. Licklider at the inaugural UNESCO
+										Information Processing Conference in Paris that year. McCarthy was instrumental in the creation of three of the earliest 
+										time-sharing systems (Compatible Time-Sharing System in 1961, BBN Time-Sharing System in 1962, and Dartmouth Time Sharing System in 1963).
+										<img src="photo/h2.png">
+									</li>
+									<li>
+										In 1959, Anatoly Kitov proposed to the Central Committee of the Communist Party of the Soviet Union a detailed plan for the re-organisation of
+										the control of the Soviet armed forces and of the Soviet economy on the basis of a network of computing centres. Kitov's proposal was rejected, 
+										as later was the 1962 OGAS economy management network project.
+										<img src="photo/h3.png">
+									</li>
+									<li>
+										In 1960, the commercial airline reservation system semi-automatic business research environment (SABRE) went online with two connected mainframes.
+										<img src="photo/h4.jpg">
+									</li>
+									<li>
+										In 1963, J. C. R. Licklider sent a memorandum to office colleagues discussing the concept of the "Intergalactic Computer Network", a computer network
+										intended to allow general communications among computer users.
+										<img src="photo/h5.jpg">
+									</li>
+									<li>
+										Throughout the 1960s, Paul Baran and Donald Davies independently developed the concept of packet switching to transfer information between computers over 
+										a network.[8][9][10] Davies pioneered the implementation of the concept. The NPL network, a local area network at the National Physical Laboratory (United 
+										Kingdom) used a line speed of 768 kbit/s and later high-speed T1 links (1.544 Mbit/s line rate).
+										<img src="photo/radio.png">
+									</li>
+									<li>
+										In 1965, Western Electric introduced the first widely used telephone switch that implemented computer control in the switching fabric.
+									</li>
+									<li>
+										In 1969, the first four nodes of the ARPANET were connected using 50 kbit/s circuits between the University of California at Los Angeles,
+										the Stanford Research Institute, the University of California at Santa Barbara, and the University of Utah. In the early 1970s, Leonard 
+										Kleinrock carried out mathematical work to model the performance of packet-switched networks, which underpinned the development of the ARPANET.
+										His theoretical work on hierarchical routing in the late 1970s with student Farouk Kamoun remains critical to the operation of the Internet today.
+										<img src="photo/h6.png">
+									</li>
+									<li>
+										In 1972, commercial services were first deployed on public data networks in Europe, which began using X.25 in the late 1970s and spread 
+										across the globe. The underlying infrastructure was used for expanding TCP/IP networks in the 1980s.
+										<img src="photo/h7.png">
+									</li>
+									<li>
+										In 1973, the French CYCLADES network was the first to make the hosts responsible for the reliable delivery of data, rather than this being
+										a centralized service of the network itself.
+									</li>
+									<li>
+										In 1973, Robert Metcalfe wrote a formal memo at Xerox PARC describing Ethernet, a networking system that was based on the Aloha network, 
+										developed in the 1960s by Norman Abramson and colleagues at the University of Hawaii. In July 1976, Robert Metcalfe and David Boggs published
+										their paper "Ethernet: Distributed Packet Switching for Local Computer Networks" and collaborated on several patents received in 1977 and 1978.
+										<img src="photo/h8.jpg">
+									</li>
+									<li>
+										In 1974, Vint Cerf, Yogen Dalal, and Carl Sunshine published the Transmission Control Protocol (TCP) specification, RFC 675, coining the term 
+										Internet as a shorthand for internetworking.
+									</li>
+									<li>
+										In 1976, John Murphy of Datapoint Corporation created ARCNET, a token-passing network first used to share storage devices.
+										<img src="photo/h9.jpg">
+									</li>
+									<li>
+										In 1977, the first long-distance fiber network was deployed by GTE in Long Beach, California.
+									</li>
+									<li>
+										In 1977, Xerox Network Systems (XNS) was developed by Robert Metcalfe and Yogen Dalal at Xerox.
+										<img src="photo/h10.jpg">
+									</li>
+									<li>
+										In 1979, Robert Metcalfe pursued making Ethernet an open standard.
+									</li>
+									<li>
+										In 1980, Ethernet was upgraded from the original 2.94 Mbit/s protocol to the 10 Mbit/s protocol, which was developed by Ron Crane, Bob Garner, Roy 
+										Ogus, and Yogen Dalal.
+									</li>
+									<li>
+										In 1995, the transmission speed capacity for Ethernet increased from 10 Mbit/s to 100 Mbit/s. By 1998, Ethernet supported transmission speeds 
+										of 1 Gbit/s. Subsequently, higher speeds of up to 400 Gbit/s were added (as of 2018). The scaling of Ethernet has been a contributing factor to 
+										its continued use.
+									</li>
+								</ul>
+							</p>
+			</div>
+		</div>
+		<div id="downnav">
+			<ul>
+				<li><a href ="index.html">HOME</a></li>
+				<li><a href	="1.html">HISTORY</a></li>
+				<li><a href ="2.html">MENU</a></li>
+				<li><a href ="3.html">PRODUCT</a></li>
+				<li><a href ="ABOUT US.html">ABOUT US</a></li>
+			</ul>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>NETWORKING ASSINGMENT BY ARNAB MONDAL</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			::-webkit-scrollbar{
+				width: 5px;
+			}
+			::-webkit-scrollbar-track{
+				background: #dcdcdc;
+			}
+			::-webkit-scrollbar-thumb{
+				background: #0007;
+			}
+			::-webkit-scrollbar-thumb:hover{
+				background: #0007;
+			}
+		</style>
+		<style type=text/css>
+			html{
+				font-size:10px;
+			}
+			:root{
+				--color-1: #673ab7;
+			}
+			body{
+				line-height: 1.5;
+				font-family: sans-serif;
+				background-color: #0002;
+			}
+			*{
+				box-sizing: border-box;
+				margin:0;
+				padding:0;
+			}
+			a{
+				text-decoration: none;
+				color:black;
+			}
+			.container{
+				max-width: 1170px;
+				margin: auto;
+			}
+			.row{
+				display: flex;
+				flex-wrap: wrap;
+			}
+			.align-items-center{
+				align-items: center;
+			}
+			.justify-content-between{
+				justify-content: space-between;
+			}
+			
+			.header{
+				background-color: var(--color-1);
+				padding:0.2rem 0.1rem;
+				position: relative;
+			}
+			.header .logo,
+			.header .nav{
+				padding:0 2rem;
+			}
+			.header .logo a{
+				font-size: 2.5rem;
+				color: #ffffff;
+				text-transform: capitalize;
+			}
+			.header .nav ul li{
+				display: inline-block;
+				margin-left: 40px;
+			}
+			.header .nav ul li a{
+				display: block;
+				font-size: 16px;
+				padding:10px 0;
+				color: rgba(255,255,255,0.7);
+				text-transform: capitalize;
+				transition: all 0.5s ease;
+			}
+			.header .nav ul li a:hover,
+			.header .nav ul li a.active{
+				color: #ffffff;
+			}
+			.header #nav-check{
+				position: absolute;
+				opacity:0;
+				pointer-events: none;
+			}
+			.nav-toggler{
+				height: 34px;
+				width: 44px;
+				background-color: var(--color-1);
+				border-radius: 4px;
+				cursor: pointer;
+				display: none;
+				align-items: center;
+				justify-content: center;
+				margin-right: 15px;
+			}
+			.nav-toggler span{
+				display: block;
+				height: 2px;
+				width: 20px;
+				background-color: #ffffff;
+				position: relative;
+			}
+			.nav-toggler span::before,
+			.nav-toggler span::after{
+				content: '';
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background-color: #ffffff;
+				left:0;
+			}
+			.nav-toggler span::before{
+				top: -6px;
+			}
+			.nav-toggler span::after{
+				top: 6px;
+			}
+			@media(max-width: 991px){
+				.nav-toggler{
+					display: flex;
+				}
+				.header .nav{
+					position: absolute;
+					left:0;
+					top:100%;
+					width: 100%;
+					background-color: var(--color-1);
+					border-top: 1px solid rgba(255,255,255,0.2);
+					opacity:0;
+					visibility: hidden;
+				}
+				.header .nav ul li{
+					display: block;
+					margin:0;
+				}
+				.header #nav-check:checked ~ .nav{
+					opacity: 1;
+					visibility: visible;
+				}
+				.header #nav-check:checked ~ .nav-toggler span{
+					background-color: transparent;
+				}
+				.header #nav-check:checked ~ .nav-toggler span::before{
+					top:0;
+					transform: rotate(45deg);
+				}
+				.header #nav-check:checked ~ .nav-toggler span::after{
+					top:0;
+					transform: rotate(-45deg);
+				}
+			}
+			.banner {
+				height: calc(100rem-400rem);
+				background-image: url('photo/ab.jpg');
+				background-size: var(--bg-size);
+				background-attachment:fixed;
+				background-position: center;
+				box-shadow: 0px 5px 7px #666666;
+				border: 1px solid #666666;
+
+			}
+			.banner h2 {
+				margin-top:10rem;
+				margin-bottom:0;
+				margin-left: 3rem;
+				margin-right: 3rem;
+				padding:0;
+				font-size: 5vw;
+				font-family: Californian FB;
+				color: #fff;
+				text-align: center;
+			}
+			.banner hr {
+				margin-top:0;
+				margin-bottom:10rem;
+				width:15rem;
+				height:1rem;
+				border: 0;
+				border-top: 0.3rem solid red;
+			}
+			.block_body{
+				display: block;
+				margin-top:0;
+				margin-left:3rem;
+				margin-right:3rem;
+				margin-bottom:2rem;
+				padding:0.2rem;
+				background-color: #ffffff;
+				font-family: Times New Roman;
+				font-size: 2rem;
+				box-shadow: 0px 5px 7px #666666;
+				border: 1px solid #fffff ;
+			}
+			.fullbody{
+				margin:0 3rem;
+				padding:0;
+				font-family: Times New Roman;
+				font-size: 1.5rem;
+				text-align:justify;
+			}
+			.fullbody h3 {
+				margin-top:20px;
+				margin-bottom:0;
+				margin-bottom:0;
+				font-size: 3rem;
+				color: black;
+			}
+			.fullbody p {
+				margin-top:10px;
+				margin-bottom:0;
+				font-size: 1.5rem;
+				color: black;
+			}
+			.fullbody img{
+				display:block;
+				padding:0.5rem;
+				margin: 0 auto; 
+				max-width: 100%; 
+				width:36rem;
+				height:auto;
+				background-color: #ffffff;
+			}
+			.fullbody ul {
+				margin-top:10px;
+				margin-bottom:0;
+				font-size: 1.5remx;
+				color: black;
+			}
+			.fullbody li {
+				margin: 1px auto;
+				margin-bottom:0;
+				font-size: 1.5rem;
+				color: black;
+			}
+			.fullbody ol {
+				margin-top:10px;
+				margin-bottom:0;
+				font-size: 1.5remx;
+				color: black;
+			}
+			#nava{
+				margin-top:30px;
+				text-align:center;
+			}
+			#nava a{
+				text-decoration:none;
+				display: inline-block;
+				padding:8px 16px;
+				margin:20px 20px;
+				background-color:skyblue;
+				color:black;
+			}
+			#downnav{
+				margin:0;
+				padding:0;
+				max-width: 100%;
+				min-height: 90px;
+				background: #262626;
+				margin-top:40px;
+				padding:20px;
+				width: 100%;
+				height: 90px;
+				background: #262626;
+				box-shadow: 0 -5px 7px #666666;
+				border: 1px solid #666666;
+			}
+			#downnav ul{
+				list-style: none;
+				padding: 0;
+				margin:20px 0px;
+				text-align: center;
+			}
+			#downnav li{
+				display: inline-block;
+				text-align: center;
+				max-width:95px;
+				heght:70px;
+				line-height:0px;
+			}
+			#downnav a{
+				text-decoration: none;
+				color:#fff;
+				width: 100px;
+				display: block;
+				font-size: 15px;
+				fonr-wight: bold;
+				text-align: center;
+				display:block;
+				fonr-wight:bolder;
+			}
+			#downnav a:hover{
+				background:blue;
+				color:#fff;
+				transition:0.1s;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="header">
+			<div class="container">
+				<div class="row align-items-center justify-content-between">
+					<div class="logo">
+						<a href="#">Arnab Mondal</a>
+				</div>
+				<input type="checkbox" id="nav-check">
+				<label for="nav-check" class="nav-toggler">
+					<span></span>
+				</label>
+				<nav class="nav">
+					<ul>
+						<li><a href ="index.html">HOME</a></li>
+						<li><a href ="1.html">HISTORY</a></li>
+						<li><a href ="2.html">MENU</a></li>
+						<li><a href ="3.html">PRODUCT</a></li>
+						<li><a href ="ABOUT US.html">ABOUT US</a></li>
+					</ul>
+				</nav>
+				</div>
+			</div>
+		</header>
+		
+		<div class="banner"><center><h2>NETWORKING</h2><hr/></center></div>
+		<div class="adds">
+			<h1>
+				<marquee>
+					<a href="ABOUT US.html">
+						NETWORKING ASSIGNMENT BY ARNAB MONDAL
+					</a>
+				</marquee>
+			</h1>
+		</div>
+		<div class="block_body">
+			<div class="fullbody">
+				<h3>Communication protocols-</h3>
+					<p>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						A communication protocol is a set of rules for exchanging information over a network. Communication protocols have various
+						characteristics. They may be connection-oriented or connectionless, they may use circuit mode or packet switching, and they may 
+						use hierarchical addressing or flat addressing. In a protocol stack, often constructed per the OSI model, communications functions
+						<img src="photo/c1.png" style="float:left">
+						are divided up into protocol layers, where each layer leverages the services of the layer below it until the lowest layer controls 
+						the hardware that sends information across the media. The use of protocol layering is ubiquitous across the field of computer networking.
+						An important example of a protocol stack is HTTP (the World Wide Web protocol) running over TCP over IP (the Internet protocols) over IEEE
+						802.11 (the Wi-Fi protocol). This stack is used between the wireless router and the home user's personal computer when the user is surfing the web.
+						There are many communication protocols, a few of which are described below.
+						<img src="photo/osi.png" style="float:right">
+					</p>
+					<h2>Common protocols</h2>
+						<p>
+							<h4>Internet Protocol Suite</h4>
+								<p>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									The Internet Protocol Suite, also called TCP/IP, is the foundation of all modern networking. It offers connection-less and connection-oriented
+									services over an inherently unreliable network traversed by datagram transmission using Internet protocol (IP). At its core, the protocol suite 
+									defines the addressing, identification, and routing specifications for Internet Protocol Version 4 (IPv4) and for IPv6, the next generation of 
+									the protocol with a much enlarged addressing capability. The Internet Protocol Suite is the defining set of protocols for the Internet.
+									
+								</p>
+							<h4>IEEE 802</h4>
+							<img src="photo/ip.png" style="float:right">
+								<p>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									IEEE 802 is a family of IEEE standards dealing with local area networks and metropolitan area networks. The complete IEEE 802 protocol suite provides 
+									a diverse set of networking capabilities. The protocols have a flat addressing scheme. They operate mostly at layers 1 and 2 of the OSI model.
+									For example, MAC bridging (IEEE 802.1D) deals with the routing of Ethernet packets using a Spanning Tree Protocol. IEEE 802.1Q describes VLANs, 
+									and IEEE 802.1X defines a port-based Network Access Control protocol, which forms the basis for the authentication mechanisms used in VLANs
+									(but it is also found in WLANs[37]) – it is what the home user sees when the user has to enter a "wireless access key".
+								</p>
+							<img src="photo/ip2.png" style="float:left">
+							<h4>Ethernet</h4>
+								<p>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									Ethernet is a family of technologies used in wired LANs. It is described by a set of standards together called IEEE 802.3 published by the Institute 
+									of Electrical and Electronics Engineers.
+								</p>
+							<h4>Wireless LAN</h4>
+								<p>
+									Wireless LAN based on the IEEE 802.11 standards, also widely known as WLAN or WiFi, is probably the most well-known member of the IEEE 802 protocol 
+									family for home users today. IEEE 802.11 shares many properties with wired Ethernet.
+								</p>
+							<h4>SONET/SDH</h4>
+							<img src="photo/son.jpg" style="float:right">
+								<p>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									Synchronous optical networking (SONET) and Synchronous Digital Hierarchy (SDH) are standardized multiplexing protocols that transfer multiple digital 
+									bit streams over optical fiber using lasers. They were originally designed to transport circuit mode communications from a variety of different sources, 
+									primarily to support circuit-switched digital telephony. However, due to its protocol neutrality and transport-oriented features, SONET/SDH also was the 
+									obvious choice for transporting Asynchronous Transfer Mode (ATM) frames.
+								</p>
+							<h4>Asynchronous Transfer Mode</h4>
+								<p>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									Asynchronous Transfer Mode (ATM) is a switching technique for telecommunication networks. It uses asynchronous time-division multiplexing and encodes data 
+									into small, fixed-sized cells. This differs from other protocols such as the Internet Protocol Suite or Ethernet that use variable-sized packets or frames. 
+									ATM has similarities with both circuit and packet switched networking. This makes it a good choice for a network that must handle both traditional high-throughput 
+									data traffic, and real-time, low-latency content such as voice and video. ATM uses a connection-oriented model in which a virtual circuit must be established between 
+									two endpoints before the actual data exchange begins. ATM still plays a role in the last mile, which is the connection between an Internet service provider and the home user.
+								</p>
+							<img src="photo/atm.jpg" style="float:left">
+							<h4>Cellular standards</h4>
+								<p>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									There are a number of different digital cellular standards, including: Global System for Mobile Communications (GSM), General Packet Radio Service (GPRS), cdmaOne, CDMA2000,
+									Evolution-Data Optimized (EV-DO), Enhanced Data Rates for GSM Evolution (EDGE), Universal Mobile Telecommunications System (UMTS), Digital Enhanced Cordless Telecommunications (DECT), 
+									Digital AMPS (IS-136/TDMA), and Integrated Digital Enhanced Network (iDEN).
+								</p>
+						</p>
+					<h2>Routing</h2>
+						<p>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							Routing is the process of selecting network paths to carry network traffic. Routing is performed for many kinds of networks, including circuit switching networks and packet switched networks.
+							In packet-switched networks, routing protocols direct packet forwarding through intermediate nodes. Intermediate nodes are typically network hardware devices such as routers, bridges, gateways,
+							firewalls, or switches. General-purpose computers can also forward packets and perform routing, though because they lack specialized hardware, may offer limited performance. The routing process directs 
+							forwarding on the basis of routing tables, which maintain a record of the routes to various network destinations. There are usually multiple routes that can be taken, and to choose between them, different
+							elements can be considered to decide which routes get installed into the routing table, such as (sorted by priority):
+							<ol>
+								<li>Prefix-Length: where longer subnet masks are preferred (independent if it is within a routing protocol or over a different routing protocol)</li>
+								<li>Metric: where a lower metric/cost is preferred (only valid within one and the same routing protocol)</li>
+								<li>Administrative distance: where a lower distance is preferred (only valid between different routing protocols)</li>
+							</ol>
+							Most routing algorithms use only one network path at a time. Multipath routing techniques enable the use of multiple alternative paths. Routing, in a more narrow sense of the term, is often contrasted with 
+							bridging in its assumption that network addresses are structured and that similar addresses imply proximity within the network. Structured addresses allow a single routing table entry to represent the route 
+							to a group of devices. In large networks, structured addressing (routing, in the narrow sense) outperforms unstructured addressing (bridging). Routing has become the dominant form of addressing on the Internet. 
+							Bridging is still widely used within localized environments.
+						</p>
+						
+							
+				<div id="nava">
+					<a href="4.html" class="previous">previous</a>
+				</div>
+			</div>
+		</div>
+		<div id="downnav">
+			<ul>
+				<li><a href ="index.html">HOME</a></li>
+				<li><a href	="1.html">HISTORY</a></li>
+				<li><a href ="2.html">MENU</a></li>
+				<li><a href ="3.html">PRODUCT</a></li>
+				<li><a href ="ABOUT US.html">ABOUT US</a></li>
+			</ul>
+		</div>
+	</body>
+</html>

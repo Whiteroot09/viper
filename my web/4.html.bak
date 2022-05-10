@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>NETWORKING ASSINGMENT BY ARNAB MONDAL</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			::-webkit-scrollbar{
+				width: 5px;
+			}
+			::-webkit-scrollbar-track{
+				background: #dcdcdc;
+			}
+			::-webkit-scrollbar-thumb{
+				background: #0007;
+			}
+			::-webkit-scrollbar-thumb:hover{
+				background: #0007;
+			}
+		</style>
+		<style type=text/css>
+			html{
+				font-size:10px;
+			}
+			:root{
+				--color-1: #673ab7;
+			}
+			body{
+				line-height: 1.5;
+				font-family: sans-serif;
+				background-color: #0002;
+			}
+			*{
+				box-sizing: border-box;
+				margin:0;
+				padding:0;
+			}
+			a{
+				text-decoration: none;
+				color:black;
+			}
+			.container{
+				max-width: 1170px;
+				margin: auto;
+			}
+			.row{
+				display: flex;
+				flex-wrap: wrap;
+			}
+			.align-items-center{
+				align-items: center;
+			}
+			.justify-content-between{
+				justify-content: space-between;
+			}
+			
+			.header{
+				background-color: var(--color-1);
+				padding:0.2rem 0.1rem;
+				position: relative;
+			}
+			.header .logo,
+			.header .nav{
+				padding:0 2rem;
+			}
+			.header .logo a{
+				font-size: 2.5rem;
+				color: #ffffff;
+				text-transform: capitalize;
+			}
+			.header .nav ul li{
+				display: inline-block;
+				margin-left: 40px;
+			}
+			.header .nav ul li a{
+				display: block;
+				font-size: 16px;
+				padding:10px 0;
+				color: rgba(255,255,255,0.7);
+				text-transform: capitalize;
+				transition: all 0.5s ease;
+			}
+			.header .nav ul li a:hover,
+			.header .nav ul li a.active{
+				color: #ffffff;
+			}
+			.header #nav-check{
+				position: absolute;
+				opacity:0;
+				pointer-events: none;
+			}
+			.nav-toggler{
+				height: 34px;
+				width: 44px;
+				background-color: var(--color-1);
+				border-radius: 4px;
+				cursor: pointer;
+				display: none;
+				align-items: center;
+				justify-content: center;
+				margin-right: 15px;
+			}
+			.nav-toggler span{
+				display: block;
+				height: 2px;
+				width: 20px;
+				background-color: #ffffff;
+				position: relative;
+			}
+			.nav-toggler span::before,
+			.nav-toggler span::after{
+				content: '';
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background-color: #ffffff;
+				left:0;
+			}
+			.nav-toggler span::before{
+				top: -6px;
+			}
+			.nav-toggler span::after{
+				top: 6px;
+			}
+			@media(max-width: 991px){
+				.nav-toggler{
+					display: flex;
+				}
+				.header .nav{
+					position: absolute;
+					left:0;
+					top:100%;
+					width: 100%;
+					background-color: var(--color-1);
+					border-top: 1px solid rgba(255,255,255,0.2);
+					opacity:0;
+					visibility: hidden;
+				}
+				.header .nav ul li{
+					display: block;
+					margin:0;
+				}
+				.header #nav-check:checked ~ .nav{
+					opacity: 1;
+					visibility: visible;
+				}
+				.header #nav-check:checked ~ .nav-toggler span{
+					background-color: transparent;
+				}
+				.header #nav-check:checked ~ .nav-toggler span::before{
+					top:0;
+					transform: rotate(45deg);
+				}
+				.header #nav-check:checked ~ .nav-toggler span::after{
+					top:0;
+					transform: rotate(-45deg);
+				}
+			}
+			.banner {
+				height: calc(100rem-400rem);
+				background-image: url('photo/ab.jpg');
+				background-size: var(--bg-size);
+				background-attachment:fixed;
+				background-position: center;
+				box-shadow: 0px 5px 7px #666666;
+				border: 1px solid #666666;
+
+			}
+			.banner h2 {
+				margin-top:10rem;
+				margin-bottom:0;
+				margin-left: 3rem;
+				margin-right: 3rem;
+				padding:0;
+				font-size: 5vw;
+				font-family: Californian FB;
+				color: #fff;
+				text-align: center;
+			}
+			.banner hr {
+				margin-top:0;
+				margin-bottom:10rem;
+				width:15rem;
+				height:1rem;
+				border: 0;
+				border-top: 0.3rem solid red;
+			}
+			.block_body{
+				display: block;
+				margin-top:0;
+				margin-left:3rem;
+				margin-right:3rem;
+				margin-bottom:2rem;
+				padding:0.2rem;
+				background-color: #ffffff;
+				font-family: Times New Roman;
+				font-size: 2rem;
+				box-shadow: 0px 5px 7px #666666;
+				border: 1px solid #fffff ;
+			}
+			.fullbody{
+				margin:0 3rem;
+				padding:0;
+				font-family: Times New Roman;
+				font-size: 1.5rem;
+				text-align:justify;
+			}
+			.fullbody h3 {
+				margin-top:20px;
+				margin-bottom:0;
+				margin-bottom:0;
+				font-size: 3rem;
+				color: black;
+			}
+			.fullbody p {
+				margin-top:10px;
+				margin-bottom:0;
+				font-size: 1.5rem;
+				color: black;
+			}
+			.fullbody img{
+				display:block;
+				padding:0.5rem;
+				margin: 0 auto; 
+				max-width: 100%; 
+				width:36rem;
+				height:auto;
+				background-color: #ffffff;
+			}
+			.fullbody ul {
+				margin-top:10px;
+				margin-bottom:0;
+				font-size: 1.5remx;
+				color: black;
+			}
+			.fullbody li {
+				margin: 1px auto;
+				margin-bottom:0;
+				font-size: 1.5rem;
+				color: black;
+			}
+			#nava{
+				margin-top:30px;
+				text-align:center;
+			}
+			#nava a{
+				text-decoration:none;
+				display: inline-block;
+				padding:8px 16px;
+				margin:20px 20px;
+				background-color:skyblue;
+				color:black;
+			}
+			#downnav{
+				margin:0;
+				padding:0;
+				max-width: 100%;
+				min-height: 90px;
+				background: #262626;
+				margin-top:40px;
+				padding:20px;
+				width: 100%;
+				height: 90px;
+				background: #262626;
+				box-shadow: 0 -5px 7px #666666;
+				border: 1px solid #666666;
+			}
+			#downnav ul{
+				list-style: none;
+				padding: 0;
+				margin:20px 0px;
+				text-align: center;
+			}
+			#downnav li{
+				display: inline-block;
+				text-align: center;
+				max-width:95px;
+				heght:70px;
+				line-height:0px;
+			}
+			#downnav a{
+				text-decoration: none;
+				color:#fff;
+				width: 100px;
+				display: block;
+				font-size: 15px;
+				fonr-wight: bold;
+				text-align: center;
+				display:block;
+				fonr-wight:bolder;
+			}
+			#downnav a:hover{
+				background:blue;
+				color:#fff;
+				transition:0.1s;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="header">
+			<div class="container">
+				<div class="row align-items-center justify-content-between">
+					<div class="logo">
+						<a href="#">Arnab Mondal</a>
+				</div>
+				<input type="checkbox" id="nav-check">
+				<label for="nav-check" class="nav-toggler">
+					<span></span>
+				</label>
+				<nav class="nav">
+					<ul>
+						<li><a href ="index.html">HOME</a></li>
+						<li><a href	="1.html">HISTORY</a></li>
+						<li><a href ="ABOUT US.html">ABOUT US</a></li>
+					</ul>
+				</nav>
+				</div>
+			</div>
+		</header>
+		
+		<div class="banner"><center><h2>COMPUTER NETWORK</h2><hr/></center></div>
+		<div class="adds">
+			<h1>
+				<marquee>
+					<a href="ABOUT US.html">
+						NETWORKING ASSIGNMENT BY ARNAB MONDAL
+					</a>
+				</marquee>
+			</h1>
+		</div>
+		<div class="block_body">
+			<div class="fullbody">
+				<h3>Computer network-</h3>
+					<p>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						A computer network is a set of computers sharing resources located on or provided by network nodes.
+						The computers use common communication protocols over digital
+						interconnections to communicate with each other. These interconnections are made up of telecommunication network technologies, based on physically wired, optical,
+						and wireless radio-frequency methods that may be arranged in a variety of network topologies.
+						The nodes of a computer network may include personal computers, servers, networking hardware, 	
+						or other specialised or general-purpose hosts. They are identified by network addresses, 
+						and may have hostnames. Hostnames serve as memorable labels for the nodes, 
+						rarely changed after initial assignment. Network addresses serve for locating and identifying the nodes by 
+						communication protocols such as the Internet Protocol.
+						Computer networks may be classified by many criteria, 
+						including the transmission medium used to carry signals, 
+						bandwidth, communications protocols to organize network 
+						traffic, the network size, the topology, traffic control
+						mechanism, and organizational intent.
+						Computer networks support many applications and services,
+						such as access to the World Wide Web, digital video, digital audio, shared use of application
+						and storage servers, printers, and fax machines, and use of email and instant messaging 
+						applications.
+						<img src="photo/computer.jpg" style="padding-left:2rem; float:right;">
+					</p>
+				<h3>Use-</h3>
+					<p>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						A computer network extends interpersonal communications by electronic means with various technologies, 
+						such as email, instant messaging, online chat, voice and video telephone calls, and video conferencing. 
+						A network allows sharing of network and computing resources. Users may access and use resources provided by 
+						devices on the network, such as printing a document on a shared network printer or use of a shared storage device. 
+						A network allows sharing of files, data, and other types of information giving authorized users the ability to 
+						access information stored on other computers on the network. Distributed computing uses computing 
+						resources across a network to accomplish tasks.
+						<img src="photo/use.jpg" style="padding-right:2rem; float:left;">
+					</p>
+				<h3>Network packet-</h3>
+					<p>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Most modern computer networks use protocols based on packet-mode transmission. 
+						A network packet is a formatted unit of data carried by a packet-switched network.
+						Packets consist of two types of data: control information and user data (payload). 
+						The control information provides data the network needs to deliver the user data, 
+						for example, source and destination network addresses, error detection codes, and 
+						sequencing information. Typically, control information is found in packet headers 
+						and trailers, with payload data in between.
+						With packets, the bandwidth of the transmission medium can be better shared among 
+						users than if the network were circuit switched. When one user is not sending packets, 
+						the link can be filled with packets from other users, and so the cost can be shared, 
+						with relatively little interference, provided the link isn't overused. Often the route 
+						a packet needs to take through a network is not immediately available. In that case, 
+						the packet is queued and waits until a link is free.
+						The physical link technologies of packet network typically limit the size of packets 
+						to a certain maximum transmission unit (MTU). A longer message may be fragmented before 
+						it is transferred and once the packets arrive, they are reassembled to construct the original message.
+					</p>
+				<h3>Network topology-</h3>
+					<p>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						The physical or geographic locations of network nodes and links generally have relatively little effect 
+						on a network, but the topology of interconnections of a network can significantly affect its throughput
+						and reliability. With many technologies, such as bus or star networks, a single failure can cause the 
+						network to fail entirely. In general, the more interconnections there are, the more robust the network is; 
+						but the more expensive it is to install. Therefore most network diagrams are arranged by their network topology 
+						which is the map of logical interconnections of network hosts.
+						<h2>Common layouts are:</h2>
+							<p>
+								<ul>					
+									<li>
+										<b>Bus network:</b> all nodes are connected to a common medium along this medium. This was the layout used in the original 
+										Ethernet, called 10BASE5 and 10BASE2. This is still a common topology on the data link layer, although modern physical 
+										layer variants use point-to-point links instead, forming a star or a tree.
+										<img src="photo/bus.png">
+									</li>
+									<li>
+										<b>Star network:</b> all nodes are connected to a special central node. This is the typical layout found in a small 
+										switched Ethernet LAN, where each client connects to a central network switch, and logically in a wireless LAN, 
+										where each wireless client associates with the central wireless access point.
+										<img src="photo/star.png">
+									</li>
+									<li>
+										<b>Ring network:</b> each node is connected to its left and right neighbour node, such that all nodes are connected and 
+										that each node can reach each other node by traversing nodes left- or rightwards. Token ring networks, and the 
+										Fiber Distributed Data Interface (FDDI), made use of such a topology.
+										<img src="photo/ring.png">
+									</li>
+									<li>
+										<b>Mesh network:</b> each node is connected to an arbitrary number of neighbours in such a way that there is at least one 
+										traversal from any node to any other.
+										<img src="photo/mesh.png">
+									</li>
+									<li>
+										<b>Fully connected network:</b> each node is connected to every other node in the network.<br>
+										<img src="photo/full.png">
+									</li>
+									<li>
+										<b>Tree network:</b> nodes are arranged hierarchically. This is the natural topology for a larger Ethernet network with 
+										multiple switches and without redundant meshing.
+										<img src="photo/tree.png">
+									</li>
+								</ul>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								The physical layout of the nodes in a network may not necessarily reflect the network topology. 
+								As an example, with FDDI, the network topology is a ring, but the physical topology is often a star, 
+								because all neighboring connections can be routed via a central physical location. 
+								Physical layout is not completely irrelevant, however, as common ducting and equipment locations can 
+								represent single points of failure due to issues like fires, power failures and flooding.
+							</p>
+						<h2>Overlay network-</h2>
+							<p>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								An overlay network is a virtual network that is built on top of another network. 
+								Nodes in the overlay network are connected by virtual or logical links. Each link 
+								corresponds to a path, perhaps through many physical links, in the underlying network.
+								The topology of the overlay network may (and often does) differ from that of the underlying one.
+								For example, many peer-to-peer networks are overlay networks.
+								<img src="photo/over.png" style="float:right"> 
+								They are organized as nodes of a virtual system of links that run on top of the Internet.
+								Overlay networks have been around since the invention of networking when computer systems were connected over
+								telephone lines using modems before any data network existed.
+								The most striking example of an overlay network is the Internet itself. The Internet itself was initially built 
+								as an overlay on the telephone network. Even today, each Internet node can communicate with virtually any 
+								other through an underlying mesh of sub-networks of wildly different topologies and technologies. Address 
+								resolution and routing are the means that allow mapping of a fully connected IP overlay network to its underlying network.
+								Another example of an overlay network is a distributed hash table, which maps keys to nodes in the network. In this case, 
+								the underlying network is an IP network, and the overlay network is a table (actually a map) indexed by keys.
+								Overlay networks have also been proposed as a way to improve Internet routing, such as through quality of service guarantees 
+								achieve higher-quality streaming media. Previous proposals such as IntServ, DiffServ, and IP Multicast have not seen wide 
+								acceptance largely because they require modification of all routers in the network.[citation needed] On the other hand, an 
+								overlay network can be incrementally deployed on end-hosts running the overlay protocol software, without cooperation from 
+								Internet service providers. The overlay network has no control over how packets are routed in the underlying network between 
+								two overlay nodes, but it can control, for example, the sequence of overlay nodes that a message traverses before it reaches 
+								its destination.
+								For example, Akamai Technologies manages an overlay network that provides reliable, efficient content delivery 
+								(a kind of multicast). Academic research includes end system multicast, resilient routing and quality of 
+								service studies, among others.
+							</p>
+					</p>
+				<h3>Network links-</h3>
+					<p>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						The transmission media (often referred to in the literature as the physical medium) used to link devices to form a 
+						computer network include electrical cable, optical fiber, and free space. In the OSI model, the software to handle 
+						the media is defined at layers 1 and 2 — the physical layer and the data link layer.
+						A widely adopted family that uses copper and fiber media in local area network (LAN) technology 
+						are collectively known as Ethernet. The media and protocol standards that enable communication 
+						between networked devices over Ethernet are defined by IEEE 802.3. Wireless LAN standards use radio waves, others 
+						use infrared signals as a transmission medium. Power line communication uses a building's power cabling to transmit data.
+						<h2>Wired</h2>
+							<p>
+								The following classes of wired technologies are used in computer networking.
+								<ul>					
+									<li>
+										Coaxial cable is widely used for cable television systems, office buildings, and other work-sites for local area networks. 
+										Transmission speed ranges from 200 million bits per second to more than 500 million bits per second.
+										<img src="photo/coaxial.jpg">
+									</li>
+									<li>
+										ITU-T G.hn technology uses existing home wiring (coaxial cable, phone lines and power lines) to create a high-speed local area network.
+									</li>
+									<li>
+										Twisted pair cabling is used for wired Ethernet and other standards. It typically consists of 4 pairs of copper cabling that can be utilized 
+										for both voice and data transmission. The use of two wires twisted together helps to reduce crosstalk and electromagnetic induction. 
+										The transmission speed ranges from 2 Mbit/s to 10 Gbit/s. Twisted pair cabling comes in two forms: unshielded twisted pair (UTP) and shielded 
+										twisted-pair (STP). Each form comes in several category ratings, designed for use in various scenarios
+										<img src="photo/twisted.jpg">
+									</li>
+									<li>
+										An optical fiber is a glass fiber. It carries pulses of light that represent data via lasers and optical amplifiers. Some advantages of optical 
+										fibers over metal wires are very low transmission loss and immunity to electrical interference. Using dense wave division multiplexing, optical 
+										fibers can simultaneously carry multiple streams of data on different wavelengths of light, which greatly increases the rate that data can be 
+										sent to up to trillions of bits per second. Optic fibers can be used for long runs of cable carrying very high data rates, and are used for undersea 
+										cables to interconnect continents. There are two basic types of fiber optics, single-mode optical fiber (SMF) and multi-mode optical fiber (MMF). 
+										Single-mode fiber has the advantage of being able to sustain a coherent signal for dozens or even a hundred kilometers. Multimode fiber is cheaper to 
+										terminate but is limited to a few hundred or even only a few dozens of meters, depending on the data rate and cable grade.
+										<img src="photo/fiberoptic.jpg">
+									</li>
+								</ul>
+							</p>
+					</p>
+				<div id="nava">
+					<a href="index.html" class="previous">previous</a>
+					<a href="5.html" class="next">next</a>
+				</div>
+			</div>
+		</div>
+		<div id="downnav">
+			<ul>
+				<li><a href ="index.html">HOME</a></li>
+				<li><a href	="1.html">HISTORY</a></li>
+				<li><a href ="2.html">MENU</a></li>
+				<li><a href ="3.html">PRODUCT</a></li>
+				<li><a href ="ABOUT US.html">ABOUT US</a></li>
+			</ul>
+		</div>
+	</body>
+</html>
